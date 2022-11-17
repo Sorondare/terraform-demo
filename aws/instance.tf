@@ -4,6 +4,7 @@ resource "aws_instance" "nginx_server" {
   key_name               = aws_key_pair.admin_key.key_name
   subnet_id              = aws_subnet.nginx_subnet_1.id
   vpc_security_group_ids = [aws_security_group.allow_http.id, aws_security_group.allow_ssh.id]
+  user_data = file("scripts/install.sh")
 
   tags = {
     Name = "nginx-server"
